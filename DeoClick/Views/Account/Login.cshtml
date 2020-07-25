@@ -1,0 +1,54 @@
+﻿@model DeoClick.Models.UserLoginModel;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<section class="engine"><a href="https://mobirise.info/h">how to create a web page for free</a></section>
+<section class="header15 cid-s1boti6T5a mbr-fullscreen mbr-parallax-background" id="header15-10">
+    <div class="container align-right">
+        <div class="row">
+            <div class="mbr-white col-lg-8 col-md-7 content-container">
+                <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">Faça acontecer...</h1>
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"><strong>Seu evento começa aqui!</strong></p>
+            </div>
+            <div class="col-lg-4 col-md-5">
+                <div class="form-container">
+                    <div class="media-container-column">
+                        <!---Formbuilder Form--->
+                        <form asp-action="Login" class="mbr-form form-with-styler">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="dragArea row">
+                                <div class="col-md-12 form-group " data-for="name">
+                                    <input asp-for="Email" placeholder="Email" data-form-field="Email" required="required" class="form-control px-3 display-7" id="name-header15-10" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-12 form-group " data-for="email">
+                                    <input asp-for="Password" placeholder="Senha" data-form-field="Senha" required="required" class="form-control px-3 display-7" id="name-header15-10" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="col-md-12 input-group-btn">
+                                    <input type="submit" class="btn btn-secondary btn-form display-4" value="ENTRAR" />
+                                </div>
+                            </div>
+                        </form>
+                        <!---Formbuilder Form--->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mbr-arrow hidden-sm-down" aria-hidden="true">
+        <a href="#next">
+            <i class="mbri-down mbr-iconfont"></i>
+        </a>
+    </div>
+</section>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

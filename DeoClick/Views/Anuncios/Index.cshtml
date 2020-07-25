@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DeoClick.Models.Anuncio>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="color:crimson">Lista de Anúncios</h1>
+
+<p>
+    <a asp-action="Create">Criar Novo Anúncio</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nomeAnuncio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tipoAnuncio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.valorAnuncio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FotoAnuncio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idCliente)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeAnuncio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipoAnuncio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valorAnuncio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FotoAnuncio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clientes.nomeCliente)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Descrição</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,137 @@
+﻿@model DeoClick.Models.Evento
+
+@{
+    ViewData["Title"] = "Editar Evento";
+}
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+<br />
+<h1 style="color:blueviolet">Editar Informação sobre o Evento</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="statusEvento" /> @Html.DisplayNameFor(model => model.statusEvento)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="nomeEvento" class="control-label"></label>
+                <input asp-for="nomeEvento" class="form-control" />
+                <span asp-validation-for="nomeEvento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="endereco" class="control-label"></label>
+                <input asp-for="endereco" class="form-control" />
+                <span asp-validation-for="endereco" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="bairro" class="control-label"></label>
+                <input asp-for="bairro" class="form-control" />
+                <span asp-validation-for="bairro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="numeroResidenia" class="control-label"></label>
+                <input asp-for="numeroResidenia" class="form-control" />
+                <span asp-validation-for="numeroResidenia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cep" class="control-label"></label>
+                <input asp-for="cep" class="form-control" />
+                <span asp-validation-for="cep" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="descricao" class="control-label"></label>
+                <input asp-for="descricao" class="form-control" />
+                <span asp-validation-for="descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="email" class="control-label"></label>
+                <input asp-for="email" class="form-control" />
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="telefone" class="control-label"></label>
+                <input asp-for="telefone" class="form-control" />
+                <span asp-validation-for="telefone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="complemento" class="control-label"></label>
+                <input asp-for="complemento" class="form-control" />
+                <span asp-validation-for="complemento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="dataInicio" class="control-label"></label>
+                <input asp-for="dataInicio" class="form-control" />
+                <span asp-validation-for="dataInicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="dataTermino" class="control-label"></label>
+                <input asp-for="dataTermino" class="form-control" />
+                <span asp-validation-for="dataTermino" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tipoEvento" class="control-label"></label>
+                <input asp-for="tipoEvento" class="form-control" />
+                <span asp-validation-for="tipoEvento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="valorEvento" class="control-label"></label>
+                <input asp-for="valorEvento" class="form-control" />
+                <span asp-validation-for="valorEvento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FotoEvento" class="control-label"></label>
+                <input type="hidden" asp-for="FotoEvento" />
+                <input type="file" id="NovaFoto" name="NovaFoto" class="form-control-file" accept=".jpg,.jpeg,.png,.gif" />
+                <span asp-validation-for="FotoEvento" class="text-danger"></span>
+                <img src="@(System.IO.File.Exists(ViewData["CaminhoFoto"] + Model.FotoEvento) ?
+                          Url.Content(Model.FotoEvento) : Url.Content("~/images/NoPhoto.png"))"
+                     class="img-fluid" id="PreviewFoto" />
+            </div>
+            <div class="form-group">
+                <label asp-for="idCliente" class="control-label"></label>
+                <select asp-for="idCliente" class="form-control" asp-items="ViewBag.idCliente"></select>
+                <span asp-validation-for="idCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="idCidade" class="control-label"></label>
+                <select asp-for="idCidade" class="form-control" asp-items="ViewBag.idCidade"></select>
+                <span asp-validation-for="idCidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar Evento" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        window.addEventListener('load', function () {
+            document.querySelector('input[type="file"]').addEventListener('change', function () {
+                if (this.files && this.files[0]) {
+                    var img = document.getElementById('PreviewFoto');
+                    img.src = URL.createObjectURL(this.files[0])
+                }
+            });
+        });
+
+        //arrumar o valor do dinheiro para o padrão de reais
+        $.validator.methods.range = function (value, element, param) {
+            var globalizedValue = value.replace(",", ".");
+            return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+        }
+
+        $.validator.methods.number = function (value, element) {
+            return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+        }
+    </script>
+}

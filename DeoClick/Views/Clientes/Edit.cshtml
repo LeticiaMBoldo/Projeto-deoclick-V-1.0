@@ -1,0 +1,110 @@
+﻿@model DeoClick.Models.Clientes
+
+@{
+    ViewData["Title"] = "Editar Cliente";
+}
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+<br />
+<h1 style="color:blueviolet">Editar Informações sobre o Cliente</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="nomeCliente" class="control-label"></label>
+                <input asp-for="nomeCliente" class="form-control" />
+                <span asp-validation-for="nomeCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nomeEmpresa" class="control-label"></label>
+                <input asp-for="nomeEmpresa" class="form-control" />
+                <span asp-validation-for="nomeEmpresa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cepEmpresa" class="control-label"></label>
+                <input asp-for="cepEmpresa" class="form-control" />
+                <span asp-validation-for="cepEmpresa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="endereco" class="control-label"></label>
+                <input asp-for="endereco" class="form-control" />
+                <span asp-validation-for="endereco" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="bairro" class="control-label"></label>
+                <input asp-for="bairro" class="form-control" />
+                <span asp-validation-for="bairro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="complemento" class="control-label"></label>
+                <input asp-for="complemento" class="form-control" />
+                <span asp-validation-for="complemento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="numeroResidencial" class="control-label"></label>
+                <input asp-for="numeroResidencial" class="form-control" />
+                <span asp-validation-for="numeroResidencial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="telefoneContato" class="control-label"></label>
+                <input asp-for="telefoneContato" class="form-control" />
+                <span asp-validation-for="telefoneContato" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="email" class="control-label"></label>
+                <input asp-for="email" class="form-control" />
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="senha" class="control-label"></label>
+                <input asp-for="senha" class="form-control" />
+                <span asp-validation-for="senha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="caminhoImagemPerfil" class="control-label"></label>
+                <input type="hidden" asp-for="caminhoImagemPerfil" />
+                <input type="file" id="NovaFoto" name="NovaFoto" class="form-control-file" accept=".jpg,.jpeg,.png,.gif" />
+                <span asp-validation-for="caminhoImagemPerfil" class="text-danger"></span>
+                <img src="@(System.IO.File.Exists(ViewData["CaminhoFoto"] + Model.caminhoImagemPerfil) ?
+                          Url.Content(Model.caminhoImagemPerfil) : Url.Content("~/images/NoPhoto.png"))" class="img-fluid" id="PreviewFoto" />
+            </div>
+            <div class="form-group">
+                <label asp-for="idCidade" class="control-label"></label>
+                <select asp-for="idCidade" class="form-control" asp-items="ViewBag.idCidade"></select>
+                <span asp-validation-for="idCidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar Cliente" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        window.addEventListener('load', function () {
+            document.querySelector('input[type="file"]').addEventListener('change', function () {
+                if (this.files && this.files[0]) {
+                    var img = document.getElementById('PreviewFoto');
+                    img.src = URL.createObjectURL(this.files[0])
+                }
+            });
+        });
+
+        $.validator.methods.range = function (value, element, param) {
+            var globalizedValue = value.replace(",", ".");
+            return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+        }
+
+        $.validator.methods.number = function (value, element) {
+            return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+        }
+    </script>
+}

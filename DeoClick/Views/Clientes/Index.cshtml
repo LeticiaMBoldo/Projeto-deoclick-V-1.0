@@ -1,0 +1,101 @@
+﻿@model IEnumerable<DeoClick.Models.Clientes>
+
+@{
+    ViewData["Title"] = "Cliente";
+}
+
+<h1 style="color:crimson">Lista de Clientes</h1>
+
+<p>
+    <a asp-action="Create">Adicionar Nova Cliente</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nomeCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nomeEmpresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cepEmpresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.endereco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bairro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.complemento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.numeroResidencial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telefoneContato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.senha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.caminhoImagemPerfil)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idCidade)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeEmpresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cepEmpresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.endereco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bairro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.complemento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.numeroResidencial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefoneContato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.senha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.caminhoImagemPerfil)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cidade.nomeCidade)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Descrição</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

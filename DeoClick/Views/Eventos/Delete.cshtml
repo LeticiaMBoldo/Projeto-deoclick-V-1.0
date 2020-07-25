@@ -1,0 +1,126 @@
+﻿@model DeoClick.Models.Evento
+
+@{
+    ViewData["Title"] = "Deletar";
+}
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+<br />
+
+<h1 style="color:red;">Deletar</h1>
+
+<h3>Você tem certeza que quer deletar esse Evento?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.statusEvento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.statusEvento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.nomeEvento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.nomeEvento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.endereco)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.endereco)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.bairro)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.bairro)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.numeroResidenia)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.numeroResidenia)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.cep)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.cep)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.descricao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.descricao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.telefone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.telefone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.complemento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.complemento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.dataInicio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.dataInicio)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.dataTermino)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.dataTermino)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.tipoEvento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.tipoEvento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.valorEvento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.valorEvento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FotoEvento)
+        </dt>
+        <dd class="col-sm-10">
+            <img class="img-fluid" src="@(System.IO.File.Exists(ViewData["CaminhoFoto"] + Model.FotoEvento) ?
+                                    Url.Content(Model.FotoEvento) : Url.Content("~/images/NoPhoto.png"))" />
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.idCliente)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Clientes.nomeCliente)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.idCidade)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cidade.nomeCidade)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="id" />
+        <input type="submit" value="Delete Evento" class="btn btn-danger" />
+    </form>
+</div>

@@ -1,0 +1,53 @@
+﻿@model DeoClick.Models.Anuncio
+
+@{
+    ViewData["Title"] = "Descrição Anúncio";
+}
+
+<div>
+    <a asp-action="Index">Voltar</a> |
+    <a asp-action="Edit" asp-route-id="@Model.id">Editar</a>
+</div>
+
+<hr />  
+<br />
+<h1 style="color:green;">Descrição do Anúncio</h1>
+
+<br />
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nomeAnuncio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nomeAnuncio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.tipoAnuncio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.tipoAnuncio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.valorAnuncio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.valorAnuncio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FotoAnuncio)
+        </dt>
+        <dd class = "col-sm-10">
+            <img class="img-fluid" src="@(System.IO.File.Exists(ViewData["CaminhoFoto"] + Model.FotoAnuncio) ?
+                                    Url.Content(Model.FotoAnuncio) : Url.Content("~/images/NoPhoto.png"))" />
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idCliente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Clientes.nomeCliente)
+        </dd>
+    </dl>
+</div>
+

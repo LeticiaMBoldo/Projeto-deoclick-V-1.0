@@ -1,0 +1,39 @@
+﻿@model DeoClick.Models.Cidade
+
+@{
+    ViewData["Title"] = "Cadastrar Cidade";
+}
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+<br />
+
+<h1 style="color:blue;">Cadastrar Cidade</h1>
+<br />
+<h5>Aqui você pode cadastrar cidade sem sair de casa</h5>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="nomeCidade" class="control-label"></label>
+                <input asp-for="nomeCidade" class="form-control" />
+                <span asp-validation-for="nomeCidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="idEstado" class="control-label"></label>
+                <select asp-for="idEstado" class="form-control" asp-items="ViewBag.idEstado"></select>
+                <span asp-validation-for="idEstado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
